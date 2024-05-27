@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    font-size: 62.5%;
+
+    --hue: 240;
+    --color-base-white: hsl(0, 0%, 100%);
+    --color-base-gray-100: hsl(0, 0%, 96%);
+    --color-base-gray-300: hsl(var(--hue), 6%, 58%);
+    --color-base-gray-500: hsl(0, 0%, 24%);
+    --color-base-gray-900: hsl(var(--hue), 6%, 13%);
+}
+
+html, body, input {
+    font-family: 'Mulish', sans-serif;
+}
+
+body {
+    font-size: 1.6rem;
+    background-color: var(--color-base-white);
+    color: var(--color-base-gray-900);
+}
+
+#app {
+    display: grid;
+    grid-template-rows: max-content 1fr max-content;
+    height: 100vh;
+}
+
+.container {
+    padding: 1.6rem 3.2rem;
+    width: min(112rem, 100%);
+    margin: 0 auto;
+}
+
+main {
+    overflow-y: scroll;
+    background-color: var(--color-base-gray-100);
+}
+
+/* filter: 
+
+    blur() -- é para embaçar;
+    brightness() -- é para dar mais luz para a imagem;
+    contrast() -- é para contrastar a imagem;
+    drop-shadow() -- é para colocar sombra na imagem;
+    grayscale() -- é para transformar a imagem em cinza;
+    hue-rotate() -- é para mudar a coloração da imagem;
+    invert() -- vai inverter a cor da imagem;
+    none -- tira tudo;
+    opacity() -- é para modificar a opacidade da imagem;
+    saturate() -- é para mudar a saturação da imagem;
+    sepia() -- é para deixar a imagem mais embelecida ou envelhecida não entendi, mas só testar
+    url() -- pode aplicar tipos externos;
+*/
+
+
+
+header,nav, nav ul {
+    display: flex;
+    align-items: center;
+    gap: 7.2rem;
+    font-weight: 700;
+}
+
+header form {
+    flex: 1;
+}
+
+nav ul {
+    list-style: none;
+    font-size: 1.8rem;
+    color: var(--color-base-gray-300);
+}
+
+ul li.active {
+    color: var(--color-base-gray-900);
+}
+
+.input-wrapper label {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 1.6rem;
+    background-color: var(--color-base-gray-100);
+    border: 0;
+    border-radius: .6rem;
+
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.input-wrapper input::placeholder {
+    opacity: 0.56;
+    color: var(--color-base-gray-500);
+}
+
+.avatar {
+    width: 4.2rem;
+    height: 4.2rem;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+/* galeria */
+
+main h1 {
+    font-size: 2.4rem;
+    padding-top: 1.6rem;
+}
+
+.gallery {
+    margin-top: 3.2rem;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.2rem;
+}
+
+.item {
+    background-color: var(--color-base-white);
+    border-radius: .8rem;
+    overflow: hidden;
+}
+
+.item img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+
+    /* transition-property: filter, transform;
+    transition-duration: 300ms;
+    transition-delay: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition: all 200ms ease-out, transform 500ms ease-in; */
+
+    transition: all 200ms ease-out;
+
+    display: block;
+}
+
+.item img:hover {
+    filter: hue-rotate(7deg) contrast(101%) saturate(200%);
+    transform: scale(1.1) rotate(-2deg);
+}
+
+.details {
+    padding: 2.2rem;
+    background-color: var(--color-base-white);
+    z-index: 1;
+    position: relative;
+}
+
+.details h2 {
+    font-size: 1.8rem;
+}
+
+.tags {
+    margin-top: 1.2rem;
+}
+
+.tags span {
+    padding: .6rem;
+    background-color: var(--color-base-gray-100);
+    border-radius: .4rem;
+
+    line-height: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.div-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    background-color: var(--color-base-white);
+    border-radius: 5px;
+    font-size: 1.6rem;
+    padding: 10px 25px;
+    border: 1px solid var(--color-base-gray-300);
+    margin: 50px 0 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    transition: .2s;
+    background-color: var(--color-base-gray-100);
+    transform: scale(1.1);
+}
+
+.desativo {
+    display: none;
+}
+
+footer p {
+    text-align: center;
+    padding: 1.6rem;
+    font-weight: 600;
+}
+
+header {
+    --startY: -100%;
+    animation: move .2s;
+}
+
+footer {
+    --startY: 100%;
+    animation: move .2s;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(var(--startY));
+    }
+}
+
+.item, button {
+    --delay: .4s;
+    animation: appear .4s var(--delay) backwards;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
